@@ -21,6 +21,7 @@
     <color name="oxblue">#0B132B</color>
     <color name="cadet">#1C2541</color>
     <color name="independance">#3A506B</color>
+    <color name="transparent">#00000000</color>
 
 
 </resources>

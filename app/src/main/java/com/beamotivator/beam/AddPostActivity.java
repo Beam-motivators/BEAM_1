@@ -21,6 +21,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -54,6 +56,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -65,6 +68,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class AddPostActivity extends AppCompatActivity  {
+    private static ProgressDialog progressDialog;
 
 
     //ap - add post
@@ -322,9 +326,15 @@ public class AddPostActivity extends AppCompatActivity  {
     }
 
     private void uploadData( final String description, String uri) {
-        pd.setMessage("Uploading");
-        pd.show();
-
+//        pd.setMessage("Uploading");
+//        pd.show();
+        progressDialog = new ProgressDialog(this,R.style.AppCompatAlertDialogStyle);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(" Uploading Plese Wait");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setProgress(0);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        progressDialog.show();
         String userid = firebaseAuth.getCurrentUser().getUid();
         //for post-image name ,post-id and post-publish-time
         final String timestamp = String.valueOf(System.currentTimeMillis());
@@ -375,7 +385,7 @@ public class AddPostActivity extends AppCompatActivity  {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 //added in database
-                                                pd.dismiss();
+                                                progressDialog.dismiss();
                                                 Toast.makeText(AddPostActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                                                 //reset views
                                                 //apTitle.setText("");
@@ -415,7 +425,7 @@ public class AddPostActivity extends AppCompatActivity  {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         //failed adding post nin database
-                                        pd.dismiss();
+                                        progressDialog.dismiss();
                                         Toast.makeText(AddPostActivity.this, "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -426,8 +436,15 @@ public class AddPostActivity extends AppCompatActivity  {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     //failed uploading image
-                    pd.dismiss();
+                    progressDialog.dismiss();
                     Toast.makeText(AddPostActivity.this, "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    //displaying the upload progress
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
                 }
             });
         } else {
@@ -457,7 +474,7 @@ public class AddPostActivity extends AppCompatActivity  {
                         @Override
                         public void onSuccess(Void aVoid) {
                             //added in database
-                            pd.dismiss();
+                            progressDialog.dismiss();
                             Toast.makeText(AddPostActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
 //                            apTitle.setText("");
                             apDescription.setText("");
@@ -487,11 +504,10 @@ public class AddPostActivity extends AppCompatActivity  {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     //failed adding post nin database
-                    pd.dismiss();
+                    progressDialog.dismiss();
                     Toast.makeText(AddPostActivity.this, "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
     }
 

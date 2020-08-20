@@ -5,13 +5,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -38,7 +46,8 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ImageView imageView1, imageView2;
+    private ValueAnimator valueAnimator;
     private  static final int RC_SIGN_IN = 100;
     private GoogleSignInClient mGoogleSignInClient;
     private LinearLayout signIn;
@@ -51,12 +60,39 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            Drawable background = this.getResources().getDrawable(R.drawable.two);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(this.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(this.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+
+        }
         setContentView(R.layout.activity_main);
 
-
-
+        imageView1 = findViewById(R.id.imageBg1);
+        imageView2 = findViewById(R.id.imageBg2);
+        valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.setDuration(40000L);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float progress = (float) valueAnimator.getAnimatedValue();
+                float width = imageView1.getWidth();
+                final float translationX = width * progress;
+                imageView1.setTranslationX(translationX);
+                imageView2.setTranslationX(translationX - width);
+            }
+        });
+        valueAnimator.start();
         signIn = findViewById(R.id.SignIn);
-
+//        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
+//        signIn.startAnimation(animation);
         //Before mAuth
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -224,5 +260,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        valueAnimator.end();
 
+    }
 }

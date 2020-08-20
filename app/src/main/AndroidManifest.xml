@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".MyApplication"
@@ -15,22 +15,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutActivity"/>
-        <activity android:name=".AddModifyTask"/>
-        <activity android:name=".AddPostActivity"/>
-        <activity android:name=".Attendance"/>
-        <activity android:name=".BottomProfileActivity"/>
-        <activity android:name=".CropImages"/>
-        <activity android:name=".EachGroup"/>
-        <activity android:name=".GroupCreateActivity"/>
-        <activity android:name=".PostDetailActivity"/>
-        <activity android:name=".PostLikedByActivity"/>
-        <activity android:name=".SavedPost"/>
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".SuggestionsActivity"/>
-        <activity android:name=".ThierProfile"/>
-        <activity android:name=".TodoMain"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".Full_screen"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".AddModifyTask" />
+        <activity android:name=".AddPostActivity" />
+        <activity android:name=".Attendance" />
+        <activity android:name=".BottomProfileActivity" />
+        <activity android:name=".CropImages" />
+        <activity android:name=".EachGroup" />
+        <activity android:name=".GroupCreateActivity" />
+        <activity android:name=".PostDetailActivity" />
+        <activity android:name=".PostLikedByActivity" />
+        <activity android:name=".SavedPost" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SuggestionsActivity" />
+        <activity android:name=".No_Internet.Internet_off" />
+        <activity android:name=".ThierProfile" />
+        <activity android:name=".TodoMain" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".DashboardActivity"
             android:windowSoftInputMode="adjustPan">
@@ -53,7 +55,7 @@
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

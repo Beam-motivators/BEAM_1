@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.Layout;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -25,13 +26,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beamotivator.beam.AddPostActivity;
 import com.beamotivator.beam.PostDetailActivity;
 import com.beamotivator.beam.PostLikedByActivity;
 import com.beamotivator.beam.R;
+
 import com.beamotivator.beam.ThierProfile;
 import com.beamotivator.beam.models.ModelPost;
 import com.beamotivator.beam.models.ModelUser;
@@ -176,7 +180,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
 
 
 
-
         //handle button clicks
         myHolder.moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,6 +240,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
 
 
         });
+
         myHolder.commentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -498,12 +502,12 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                     * change the icon to another
                     * change text like to liked */
                     holder.likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0,0,0);
-                    holder.likeBtn.setText("Helpful");
+                 //   holder.likeBtn.setText("Helpful");
                 }
                 else {
                     //user not liked this post
                     holder.likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like, 0,0,0);
-                    holder.likeBtn.setText("Helpful");
+                 //   holder.likeBtn.setText("Helpful");
                 }
             }
 
@@ -525,12 +529,12 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                      * change the icon to another
                      * change text save to saved */
                     holder.saveBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_saved, 0,0,0);
-                    holder.saveBtn.setText("Saved");
+                   // holder.saveBtn.setText("Saved");
                 }
                 else {
                     //user not saved this post
                     holder.saveBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_bookmark_border_24, 0,0,0);
-                    holder.saveBtn.setText("Save");
+                   // holder.saveBtn.setText("Save");
                 }
             }
 

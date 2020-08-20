@@ -68,7 +68,9 @@ dependencies {
 
     //to make custom google sign in button
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
+    implementation 'com.github.captain-miao:optroundcardview:1.0.0'
 
     implementation 'com.github.yalantis:ucrop:2.2.5'
-
+//lotti
+    implementation 'com.airbnb.android:lottie:3.0.1'
 }

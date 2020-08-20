@@ -13,14 +13,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,6 +32,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -35,6 +42,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.beamotivator.beam.No_Internet.Internet_off;
 import com.beamotivator.beam.fragments.HomeFragment;
 import com.beamotivator.beam.fragments.MyGroupFragment;
 import com.beamotivator.beam.fragments.NotificationFragment;
@@ -99,6 +107,23 @@ public class    DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
 
+        ConnectivityManager cm=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork=cm.getActiveNetworkInfo();
+
+        boolean isConnected=activeNetwork !=null && activeNetwork.isConnected();
+        if (isConnected){
+
+
+        }
+        else{
+
+
+            Intent c = new Intent(getApplicationContext(), Internet_off.class);
+            startActivity(c);
+
+
+        }
 
         //init permissions
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -119,6 +144,9 @@ public class    DashboardActivity extends AppCompatActivity {
 
         //set add post fab
         fabAddPost = findViewById(R.id.add_post_fab);
+
+        Animation animation = AnimationUtils.loadAnimation(DashboardActivity.this, R.anim.scale);
+        fabAddPost.startAnimation(animation);
 //        addPostLayout = findViewById(R.id.add_post_layout);
 //        addPostLayout.setVisibility(View.GONE);
         fabAddPost.setOnClickListener(new View.OnClickListener() {
