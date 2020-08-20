@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".EachGroup">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/groupsTlbr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Beam"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:background="@drawable/main_gradient"
+        >
+        <Button
+            android:layout_gravity = "end"
+            android:id="@+id/followBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:text="Follow"
+            android:background="@drawable/button_start"
+            android:textColor="@color/oxblue"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="#ece9e6"
+        android:layout_below="@id/groupsTlbr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/groupPostsRv"/>
+
+</RelativeLayout>

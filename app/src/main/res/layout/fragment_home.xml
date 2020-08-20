@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/HomeLayout"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.HomeFragment">
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawerMenu">
+
+
+
+
+
+        <RelativeLayout
+            android:background="#ece9e6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/homeHeader"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/main_gradient"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp">
+
+                <ImageView
+                    android:id="@+id/menuIv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_menu" />
+
+                <TextView
+                    android:id="@+id/homeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Beam"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_below="@id/homeHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/greet_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+
+                        android:background="@drawable/gradient_list"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp">
+
+
+                        <TextView
+                            android:id="@+id/greet_home"
+                            android:layout_width="140dp"
+                            android:layout_height="26dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="28dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="Welcome back,"
+                            android:textSize="18dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/home_username_greet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textSize="30dp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/greet_home"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="148dp"
+                            android:layout_height="140dp"
+                            android:layout_marginEnd="4dp"
+                            android:paddingBottom="20dp"
+                            android:src="@drawable/home_username"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardUseCompatPadding="false"
+                        android:elevation="5dp"
+                        app:cardCornerRadius="20dp"
+                        android:id="@+id/wokCard">
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmer_post"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#00000000">
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:visibility="gone"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/gradient_gold">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/wokDisplay"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="180dp"
+                                    android:background="@drawable/gradient_gold">
+
+                                    <ImageView
+                                        android:id="@+id/imageView3"
+                                        android:layout_width="148dp"
+                                        android:layout_height="134dp"
+                                        android:layout_marginTop="16dp"
+                                        android:src="@drawable/girl_with_objects_around_her_by_oblik_studio"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/mow"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="28dp"
+                                        android:fontFamily="@font/poppins_semibold"
+                                        android:text="Motivator of the week"
+                                        android:textSize="20dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintHorizontal_bias="0.0"
+                                        app:layout_constraintStart_toEndOf="@+id/imageView3"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/wokName"
+                                        android:layout_width="165dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginTop="8dp"
+                                        android:fontFamily="@font/poppins_bold"
+                                        android:text="Username"
+                                        android:textSize="28dp"
+                                        app:layout_constraintStart_toEndOf="@+id/wokImage"
+                                        app:layout_constraintTop_toBottomOf="@+id/mow" />
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/wokImage"
+                                        android:layout_width="39dp"
+                                        android:layout_height="52dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_image_white"
+                                        app:layout_constraintStart_toEndOf="@+id/imageView3"
+                                        app:layout_constraintTop_toBottomOf="@+id/mow" />
+
+                                    <TextView
+                                        android:id="@+id/wokPoints"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginTop="20dp"
+                                        android:text="Points"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintHorizontal_bias="0.111"
+                                        app:layout_constraintStart_toEndOf="@+id/mow"
+                                        app:layout_constraintTop_toBottomOf="@+id/mow" />
+
+                                    <TextView
+                                        android:id="@+id/textView"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="8dp"
+                                        android:text="Tap To Upvote"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintHorizontal_bias="0.538"
+                                        app:layout_constraintStart_toStartOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            </RelativeLayout>
+
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <!--            <com.facebook.shimmer.ShimmerFrameLayout-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="match_parent"-->
+                    <!--                app:shimmer_auto_start="true"-->
+                    <!--                android:layout_below="@id/wokCard">-->
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:background="#ece9e6"
+                        android:id="@+id/postsRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/wokCard"
+                        />
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+            <!--            </com.facebook.shimmer.ShimmerFrameLayout>-->
+            <!-- TODO: Update blank fragment layout -->
+        </RelativeLayout>
+
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/menuExpand"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:headerLayout="@layout/header_menu_layout"
+            app:menu="@menu/menu_home"
+            android:layout_gravity="start"/>
+
+
+
+
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+    <TextView
+        android:id="@+id/homeMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text = "To get posts of your choice follow groups you are \n interested in. "
+        android:visibility="gone"/>
+
+
+</FrameLayout>

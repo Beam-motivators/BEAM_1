@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitePassive"
+    tools:context=".ThierProfile">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:title="Profile"
+            android:id="@+id/profileToolbar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+        <!--cover photo-->
+        <LinearLayout
+            android:id="@+id/coverIV"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/gradient_profile_list"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/round_layout"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
+                android:layout_margin="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textColor="@color/oxblue"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/emailTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Email"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/phoneTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Phone"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mypostsTxt"
+            android:id="@+id/emptyProfile"
+            android:layout_centerHorizontal="true"
+            android:text="No posts yet"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/mypostsTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="My Posts"
+            android:textColor="@color/independance"
+            android:textSize="25sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_posts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/linearLayout"
+            android:visibility="gone"
+            android:layout_marginTop="58dp" />
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatarTV"
+            android:layout_width="92dp"
+            android:layout_height="83dp"
+            android:layout_alignBottom="@+id/linearLayout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="170dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="148dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="109dp"
+            android:background="@drawable/profile_shape"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_image" />
+
+    </RelativeLayout>
+
+
+
+
+</androidx.core.widget.NestedScrollView>

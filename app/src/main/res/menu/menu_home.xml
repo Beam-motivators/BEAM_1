@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/setgoals"
+        android:title="Set Goals" />
+
+    <item
+        android:id="@+id/bunkcheck"
+        android:title="Bunk Check" />
+
+    <item android:id="@+id/personalInfo"
+        android:title="Personal Info"/>
+
+    <item android:id="@+id/saved_Posts"
+        android:title="Saved Posts"/>
+
+    <item android:title="Others">
+        <menu>
+            <item android:title="Settings"
+                android:id="@+id/menuSettings" />
+            <item android:id="@+id/menuSuggestions"
+                android:title="Suggestions"/>
+            <item android:id="@+id/menuAboutUs"
+                android:title="About Us"/>
+            <item android:title="Logout"
+                android:id="@+id/menuLogout"/>
+        </menu>
+    </item>
+</menu>

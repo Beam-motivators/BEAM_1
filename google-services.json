@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "444026620385",
+    "firebase_url": "https://be-a-motivator-d737d.firebaseio.com",
+    "project_id": "be-a-motivator-d737d",
+    "storage_bucket": "be-a-motivator-d737d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444026620385:android:c89af451b36f6680c3aaa0",
+        "android_client_info": {
+          "package_name": "com.beamotivator.beam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444026620385-gjc9ef06jf06g99u21hfihvgfr88akm7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.beamotivator.beam",
+            "certificate_hash": "f99129ddc962e3e073a322931917e6c1a658eac2"
+          }
+        },
+        {
+          "client_id": "444026620385-9gqhalu25i4mk9e6affhta45av8liptv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABPnF_LvgaMk-40MRilGlRrbdtfmdxSsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444026620385-9gqhalu25i4mk9e6affhta45av8liptv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

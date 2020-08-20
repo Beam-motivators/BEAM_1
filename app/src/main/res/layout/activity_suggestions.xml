@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ece9e6"
+    tools:context=".SuggestionsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/suggestionTlbr"
+        android:layout_width="match_parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_height="?android:actionBarSize"
+        android:background="@drawable/main_gradient"
+        app:titleTextColor="@color/colorWhite"
+        />
+
+    <RelativeLayout
+        android:layout_below="@id/suggestionTlbr"
+        android:id="@+id/user_suggestion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/suggestionTIL"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="Write your suggestions or feedback!"
+            app:hintAnimationEnabled="false"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_start">
+
+            <EditText
+
+                android:id="@+id/suggestionET"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:textColor="@color/oxblue"
+                android:background="@drawable/button_start"
+                android:layout_margin="20dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/suggestionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="send"
+            android:textColor="@color/oxblue"
+            android:background="@drawable/button"
+            android:layout_below="@id/suggestionTIL"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/suggestionTlbr"
+        android:id="@+id/adminSuggestionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/suggestionsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

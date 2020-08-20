@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ece9e6"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.NotificationFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/notificationTlbr"
+            android:layout_width="match_parent"
+            app:title="Notifications"
+            app:titleTextColor="@color/colorWhite"
+            android:background="@drawable/main_gradient"
+            android:layout_height="?attr/actionBarSize">
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:background="#ece9e6"
+            android:id="@+id/notificationsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/notificationTlbr"
+            tools:listitem="@layout/row_notifications"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="No notifications yet!"
+        android:textAlignment="center"
+        android:id="@+id/notificationsEmpty"
+        android:visibility="gone"/>
+
+
+</FrameLayout>

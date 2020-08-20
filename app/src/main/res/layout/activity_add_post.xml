@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ece9e6"
+    tools:context=".AddPostActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/main_gradient"
+        android:id="@+id/apTlbr"
+        app:title="Add Post"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@id/apTlbr"
+        android:id="@+id/postsCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="false">
+        <!--    app:cardBackgroundColor="#1F1B24"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:background="@color/colorWhite">
+
+
+            <ImageView
+                android:id="@+id/pImage"
+                android:layout_width="match_parent"
+                android:layout_height="370dp"
+                android:background="@color/independance"
+                android:contentDescription="create a post"
+                android:scaleType="centerCrop" />
+
+            <EditText
+
+                android:id="@+id/pDescEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:elevation="10dp"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="start"
+                android:hint="Enter Description"
+                android:inputType="textCapSentences|textMultiLine"
+                android:minHeight="120dp"
+                android:padding="10dp"
+                android:singleLine="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ece9e6"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+
+                <TextView
+                    android:id="@+id/inputChoiceTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:fontFamily="@font/poppins_light"
+                    android:gravity="center"
+                    android:text="Choose group"
+                    android:textColor="@color/colorBlack" />
+
+                <ImageButton
+                    android:id="@+id/dropIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_droparrow"
+                    android:background="@null"
+                    android:padding="10dp"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="@color/colorWhite"
+                android:id="@+id/groupNameRv"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+
+            <Button
+                android:id="@+id/postBtn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="POST"
+                android:textColor="@color/colorBlack" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
