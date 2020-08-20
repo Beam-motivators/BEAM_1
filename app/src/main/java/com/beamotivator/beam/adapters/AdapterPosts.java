@@ -234,7 +234,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
 
                                     }
                                 });
-                                //postsRef.child(postIde).child("Likes").child(postIde).child(myUid).removeValue();
                                 likesRef.child(postIde).child("Likes").child(postIde).child(myUid).removeValue();
                                 decrementTotalLikes(pUid);
                                 Toast.makeText(context, "YO", Toast.LENGTH_SHORT).show();
@@ -243,9 +242,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                             }
                             else
                             {
-                                //not liked , like it
-//                                postsRef.child(postIde).child("pLikes").setValue(""+(pLikes+1));
-//                                postsRef.child(postIde).child("Likes").child(postIde).child(myUid).setValue("Helpful");
                                 Query query = likesRef.orderByChild("pId").equalTo(postIde);
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
@@ -263,11 +259,11 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
 
                                     }
                                 });
-                                likesRef.child(postIde).child("Likes").child(postIde).child(myUid).setValue("Helpful");
+                                likesRef.child(postIde).child("Likes").child(postIde).child(myUid).setValue("Liked");
                                 //    likesRef.child(postIde).child(myUid).setValue("Helpful");
                                 incrementTotalLikes(pUid);
                                 if(!myUid.equals(uid)){
-                                    addToHisNotifications(""+uid,""+pId, "found your post helpful");
+                                    addToHisNotifications(""+uid,""+pId, "liked your post");
 
                                 }
                                 mProcessLike = false;

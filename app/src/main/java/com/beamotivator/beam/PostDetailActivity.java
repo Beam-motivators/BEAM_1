@@ -631,14 +631,12 @@ public class PostDetailActivity extends AppCompatActivity {
                 //keep checking post until required one is obtained
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     //get data
-                    String pTitle = "" + ds.child("pTitle").getValue();
                     String pDescr = "" + ds.child("pDescr").getValue();
                     pLikes = "" + ds.child("pLikes").getValue();
                     String pTimeStamp = "" + ds.child("pTime").getValue();
                     pImage = "" + ds.child("pImage").getValue();
                     hisDp = "" + ds.child("uDp").getValue();
                     hisUid = "" + ds.child("uid").getValue();
-                    String uEmail = "" + ds.child("uEmail").getValue();
                     hisName = "" + ds.child("uName").getValue();
                     String commentCount = "" + ds.child("pComments").getValue();
 

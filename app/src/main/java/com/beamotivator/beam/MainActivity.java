@@ -85,13 +85,14 @@ public class MainActivity extends AppCompatActivity {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (acct != null) {
-            final String personName = acct.getDisplayName();
+            final String personName = Objects.requireNonNull(acct.getDisplayName()).trim();
             String personGivenName = acct.getGivenName();
             String personFamilyName = acct.getFamilyName();
             String personEmail = acct.getEmail();
             String personId = acct.getId();
             Uri personPhoto = acct.getPhotoUrl();
             final String proPic = personPhoto.toString();
+            final String name = personName.substring(0, personName.lastIndexOf(" "));
 
 //            if(personEmail.endsWith("christuniverstiy.in")) {
             AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                                 //put info to hashmap
                                 hashMap.put("email", email);
                                 hashMap.put("uid", uid);
-                                hashMap.put("name", personName);
+                                hashMap.put("name", name);
                                 hashMap.put("phone", "");
                                 hashMap.put("image", proPic);
                                 hashMap.put("myPoints", "0");

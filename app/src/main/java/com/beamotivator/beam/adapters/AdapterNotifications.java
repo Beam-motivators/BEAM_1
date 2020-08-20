@@ -44,6 +44,7 @@ public class AdapterNotifications extends RecyclerView.Adapter<AdapterNotificati
     public AdapterNotifications(Context context, ArrayList<ModelNotification> notificationList) {
         this.context = context;
         this.notificationList = notificationList;
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -112,16 +113,6 @@ public class AdapterNotifications extends RecyclerView.Adapter<AdapterNotificati
         holder.notificationTv.setText(notification);
 
 
-        String dateTime;
-
-        //covert timestamp to dd/mm/yyyy hh:mm am/pm
-        if(timestamp!=null){
-            Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-            cal.setTimeInMillis(Long.parseLong(timestamp));
-            dateTime = DateFormat.format("dd/MM/yyyy hh:mm aa",cal).toString();
-//            holder.timeTv.setText(dateTime);
-        }
-
         //click notification to open post
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +132,7 @@ public class AdapterNotifications extends RecyclerView.Adapter<AdapterNotificati
             @Override
             public boolean onLongClick(View v) {
                 //show confirmation dialog
+                Toast.makeText(context, ""+model.getTimestamp(), Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Delete");
                 builder.setMessage("Are you sure to delete this notification?");
@@ -150,10 +142,10 @@ public class AdapterNotifications extends RecyclerView.Adapter<AdapterNotificati
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //delete
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-                        ref.child(Objects.requireNonNull(firebaseAuth.getUid()))
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Extras");
+                        ref.child(Objects.requireNonNull(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()))
                                 .child("Notifications")
-                                .child(timestamp)
+                                .child(model.getTimestamp())
                                 .removeValue()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -195,7 +187,7 @@ public class AdapterNotifications extends RecyclerView.Adapter<AdapterNotificati
     }
 
     //holder class for views of row_notification
-    class HolderNotification extends RecyclerView.ViewHolder{
+    static class HolderNotification extends RecyclerView.ViewHolder{
 
         //declare views
         ImageView avatarIv;

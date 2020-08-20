@@ -111,15 +111,15 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getActivity().getWindow();
-            Drawable background = getActivity().getResources().getDrawable(R.drawable.main_gradient);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getActivity().getResources().getColor(android.R.color.transparent));
-            window.setNavigationBarColor(getActivity().getResources().getColor(android.R.color.transparent));
-            window.setBackgroundDrawable(background);
-
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getActivity().getWindow();
+//            Drawable background = getActivity().getResources().getDrawable(R.drawable.main_gradient);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(getActivity().getResources().getColor(android.R.color.transparent));
+//            window.setNavigationBarColor(getActivity().getResources().getColor(android.R.color.transparent));
+//            window.setBackgroundDrawable(background);
+//
+//        }
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
 
@@ -332,7 +332,7 @@ public class HomeFragment extends Fragment {
         //path of all posts
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
 
-        Query query = ref.getRef();
+
         //get all data from this ref
         ref.addValueEventListener(new ValueEventListener() {
             @Override
