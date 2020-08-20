@@ -70,6 +70,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class AddPostActivity extends AppCompatActivity  {
     private static ProgressDialog progressDialog;
@@ -378,6 +379,8 @@ public class AddPostActivity extends AppCompatActivity  {
                                 hashMap.put("uEmail", email);
                                 hashMap.put("uDp", dp);
                                 hashMap.put("group",bGroupName);
+                                String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
+                                hashMap.put("stamp", timeStamp);
                                 //hashMap.put("pTitle", title);
                                 hashMap.put("pDescr", description);
                                 hashMap.put("pTime", timestamp);
@@ -472,6 +475,8 @@ public class AddPostActivity extends AppCompatActivity  {
             hashMap.put("pDescr", description);
             hashMap.put("pTime", timestamp);
             hashMap.put("pImage", uri);
+            String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
+            hashMap.put("stamp", timeStamp);
             hashMap.put("pId", pId);
             hashMap.put("pLikes", "0");
             hashMap.put("pComments", "0");

@@ -163,8 +163,8 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_light"
                 android:gravity="center"
-                android:text="by_continuing_you_agree_to_Muzika_s_terms_of_use_nand_confirm_that_you_have_read_our_privacy_polic"
-                android:textColor="@color/colorBlack"
+                android:text=" discription"
+                 android:textColor="@color/colorBlack"
                 android:textSize="12sp" />
 
 

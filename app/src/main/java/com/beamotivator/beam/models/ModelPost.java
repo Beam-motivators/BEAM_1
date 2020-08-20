@@ -3,12 +3,12 @@ package com.beamotivator.beam.models;
 
 public class ModelPost {
     //use same name as given while uploading post
-    String pId, pDescr,pLikes, pComments, pTime, uid, uEmail,uDp, uName, pImage;
+    String pId, pDescr,pLikes, pComments, pTime, uid, uEmail,uDp, uName, pImage,stamp;
 
     public ModelPost() {
     }
 
-    public ModelPost(String pId, String pDescr, String pLikes, String pComments, String pTime, String uid, String uEmail, String uDp, String uName, String pImage) {
+    public ModelPost(String pId, String pDescr, String pLikes, String pComments, String pTime, String uid, String uEmail, String uDp, String uName, String pImage,String stamp) {
         this.pId = pId;
         //this.pTitle = pTitle;
         this.pDescr = pDescr;
@@ -20,6 +20,8 @@ public class ModelPost {
         this.uDp = uDp;
         this.uName = uName;
         this.pImage = pImage;
+        this.stamp = stamp;
+
     }
 
 
@@ -109,5 +111,15 @@ public class ModelPost {
 
     public void setpImage(String pImage) {
         this.pImage = pImage;
+    }
+
+
+
+    public String getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(String stamp) {
+        this.stamp = stamp;
     }
 }

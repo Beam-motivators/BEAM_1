@@ -48,11 +48,15 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -106,6 +110,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
         final String pImage = postList.get(i).getpImage();
         String pTimeStamp = postList.get(i).getpTime();
         String pComments = postList.get(i).getpComments(); //total number of comments for a post
+        String timestamp = postList.get(i).getStamp();
 
         //to convert it date time
         String dateTime = null;
@@ -176,6 +181,67 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                 Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
+        Calendar cal = Calendar.getInstance();
+        TimeZone tz = cal.getTimeZone();//get your local time zone.
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        sdf.setTimeZone(tz);//set time zone.
+        String localTime = sdf.format(new Date(Long.parseLong(timestamp )* 1000));
+        Date date = new Date();
+        try {
+            date = sdf.parse(localTime);//get local date
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(date == null) {
+            //  return null;
+        }
+
+        long time = date.getTime();
+
+        Date curDate = currentDate();
+        long now = curDate.getTime();
+        if (time > now || time <= 0) {
+            //  return null;
+        }
+
+        float timeDIM = getTimeDistanceInMinutes(time);
+
+        String timeAgo = null;
+
+        if (timeDIM == 0) {
+            timeAgo = "just now";
+        } else if (timeDIM == 1) {
+            //  return  "1 minute";
+            timeAgo="1 minute ago";
+        } else if (timeDIM >= 2 && timeDIM <= 44) {
+            timeAgo = (Math.round(timeDIM)) + " minutes ago";
+        } else if (timeDIM >= 45 && timeDIM <= 89) {
+            timeAgo = " 1 hour ago";
+        } else if (timeDIM >= 90 && timeDIM <= 1439) {
+            timeAgo = "about " + (Math.round(timeDIM / 60)) + " hours";
+        } else if (timeDIM >= 1440 && timeDIM <= 2519) {
+            timeAgo = "1 day ago";
+        } else if (timeDIM >= 2520 && timeDIM <= 43199) {
+            timeAgo = (Math.round(timeDIM / 1440)) + " days";
+        } else if (timeDIM >= 43200 && timeDIM <= 86399) {
+            timeAgo = "about a month ago";
+        } else if (timeDIM >= 86400 && timeDIM <= 525599) {
+            timeAgo = (Math.round(timeDIM / 43200)) + " months";
+        } else if (timeDIM >= 525600 && timeDIM <= 655199) {
+            timeAgo = "about a year ago";
+        } else if (timeDIM >= 655200 && timeDIM <= 914399) {
+            timeAgo = "over a year ago";
+        } else if (timeDIM >= 914400 && timeDIM <= 1051199) {
+            timeAgo = "almost 2 years ago";
+        } else {
+            timeAgo = "about " + (Math.round(timeDIM / 525600)) + " years";
+        }
+        // return timeAgo + " ago";
+        myHolder.stamp.setText(timeAgo);
+
+
+
 
 
 
@@ -802,7 +868,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
         //views from row_post.xml
         ImageView pImageIv;
         CircleImageView uPictureIv;
-        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv, pCommentsTv;
+        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv, pCommentsTv,stamp;
         ImageButton moreBtn;
         Button likeBtn, commentBtn, saveBtn, shareBtn;
         LinearLayout profileLayout;
@@ -827,6 +893,19 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
             saveBtn = itemView.findViewById(R.id.saveButton);
             shareBtn = itemView.findViewById(R.id.readMoreButton);
             profileLayout = itemView.findViewById(R.id.profileLayout);
+            stamp = itemView.findViewById(R.id.stamp);
+
         }
     }
+    public static Date currentDate() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.getTime();
+    }
+
+    private static int getTimeDistanceInMinutes(long time) {
+        long timeDistance = currentDate().getTime() - time;
+        return Math.round((Math.abs(timeDistance) / 1000) / 60);
+    }
+
+
 }
