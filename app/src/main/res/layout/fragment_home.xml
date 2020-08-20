@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:shimmer="schemas.android.com/tools"
     android:id="@+id/HomeLayout"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    tools:ignore="NamespaceTypo">
 
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -235,13 +237,63 @@ android:visibility="gone"
                     <!--                app:shimmer_auto_start="true"-->
                     <!--                android:layout_below="@id/wokCard">-->
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:background="#ece9e6"
-                        android:id="@+id/postsRecyclerView"
+
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/wokCard"
-                        />
+                        android:layout_height="match_parent">
+
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/postshimmer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            shimmer:duration="800">
+
+                            <!-- Adding 3 rows of placeholders -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <include layout="@layout/shimer" />
+
+                                <include layout="@layout/shimer" />
+
+
+
+
+
+
+                            </LinearLayout>
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:background="@color/whitePassive"
+                            android:id="@+id/postsRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:layout_below="@id/wokCard"
+                            tools:ignore="NotSibling" />
+
+
+
+                    </RelativeLayout>
+
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:background="#ece9e6"-->
+<!--                        android:id="@+id/postsRecyclerView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_below="@id/wokCard"-->
+<!--                        />-->
 
 
                 </LinearLayout>

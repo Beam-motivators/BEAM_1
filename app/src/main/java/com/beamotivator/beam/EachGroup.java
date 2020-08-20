@@ -7,9 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -48,6 +53,15 @@ public class EachGroup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            Drawable background = this.getResources().getDrawable(R.drawable.main_gradient);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(this.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(this.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+
+        }
         setContentView(R.layout.activity_each_group);
 
         // actionBar = getSupportActionBar();
@@ -96,6 +110,7 @@ public class EachGroup extends AppCompatActivity {
 
     private void setFollow() {
         followRef.child(gId).child("Participants").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(mUid)){
@@ -105,12 +120,15 @@ public class EachGroup extends AppCompatActivity {
                      * change text like to liked */
                     //holder.likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thumb_up_24px_fill, 0,0,0);
                     follow.setText("Following");
+                    follow.setBackgroundResource(R.drawable.following);
+
 
                 }
                 else {
                     //user not liked this post
                     // holder.likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thumb_up_24px, 0,0,0);
                     follow.setText("Follow");
+                    follow.setBackgroundResource(R.drawable.follow);
 
                 }
             }

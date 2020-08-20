@@ -22,6 +22,8 @@
     <color name="cadet">#1C2541</color>
     <color name="independance">#3A506B</color>
     <color name="transparent">#00000000</color>
+    <color name="red">#F40606</color>
 
+    <color name="grey1">#e0e0e0</color>
 
 </resources>

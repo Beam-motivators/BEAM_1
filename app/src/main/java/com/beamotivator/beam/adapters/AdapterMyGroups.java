@@ -6,6 +6,8 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,7 +75,8 @@ public class AdapterMyGroups extends RecyclerView.Adapter<AdapterMyGroups.GroupH
                 context.startActivity(openIntent);
             }
         });
-
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.scale);
+        holder.openGroup.startAnimation(animation);
 
     }
 
@@ -95,6 +98,7 @@ public class AdapterMyGroups extends RecyclerView.Adapter<AdapterMyGroups.GroupH
             groupTitle = itemView.findViewById(R.id.groupNameTv);
             groupDescription = itemView.findViewById(R.id.groupDescriptionTv);
             openGroup = itemView.findViewById(R.id.openGroupBtn);
+
         }
     }
 }

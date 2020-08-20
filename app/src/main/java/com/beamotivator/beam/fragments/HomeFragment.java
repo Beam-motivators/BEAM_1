@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     List<ModelPost> postList;
     AdapterPosts adapterPosts;
-    ShimmerFrameLayout shimmerFrameLayout;
+    ShimmerFrameLayout mShimmerViewContainer;
 
     //init views
     CircleImageView wokImage,menuImage;
@@ -122,7 +122,8 @@ public class HomeFragment extends Fragment {
         }
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
-
+        mShimmerViewContainer = view.findViewById(R.id.postshimmer);
+        mShimmerViewContainer.startShimmer();
 
 
 
@@ -338,9 +339,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 postList.clear();
+
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     ModelPost modelPost = ds.getValue(ModelPost.class);
-
                     postList.add(modelPost);
 
                     //adapter posts
@@ -358,7 +359,8 @@ public class HomeFragment extends Fragment {
                 else {
                     recyclerView.setVisibility(View.VISIBLE);
                     homeEmpty.setVisibility(View.GONE);
-                }
+                    mShimmerViewContainer.stopShimmer();
+                 }
             }
 
             @Override
