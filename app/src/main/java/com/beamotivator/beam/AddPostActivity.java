@@ -328,7 +328,7 @@ public class AddPostActivity extends AppCompatActivity  {
         String userid = firebaseAuth.getCurrentUser().getUid();
         //for post-image name ,post-id and post-publish-time
         final String timestamp = String.valueOf(System.currentTimeMillis());
-        String pId = userid + name;
+        final String pId = timestamp + name;
 
         String filePathAndName = "Posts/" + "post_" + timestamp;
 
@@ -359,7 +359,7 @@ public class AddPostActivity extends AppCompatActivity  {
                                 hashMap.put("pDescr", description);
                                 hashMap.put("pTime", timestamp);
                                 hashMap.put("pImage", downloadUrl);
-                                hashMap.put("pId", timestamp);
+                                hashMap.put("pId", pId);
                                 hashMap.put("pComments", "0");
                                 hashMap.put("pLikes", "0");
 
@@ -370,7 +370,7 @@ public class AddPostActivity extends AppCompatActivity  {
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
 
                                 //put data in this ref
-                                ref.child(timestamp).setValue(hashMap)
+                                ref.child(pId).setValue(hashMap)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
@@ -385,10 +385,10 @@ public class AddPostActivity extends AppCompatActivity  {
 
                                                 HashMap<Object,String> likesHash = new HashMap<>();
                                                 likesHash.put("pLikes","0");
-                                                likesHash.put("pId",timestamp);
+                                                likesHash.put("pId",pId);
 
                                                 DatabaseReference likesRef = FirebaseDatabase.getInstance().getReference("Likes");
-                                                likesRef.child(timestamp).setValue(likesHash)
+                                                likesRef.child(pId).setValue(likesHash)
                                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void aVoid) {
@@ -439,11 +439,10 @@ public class AddPostActivity extends AppCompatActivity  {
             hashMap.put("uEmail", email);
             hashMap.put("uDp", dp);
             hashMap.put("group",bGroupName);
-            // hashMap.put("pTitle", title);
             hashMap.put("pDescr", description);
             hashMap.put("pTime", timestamp);
             hashMap.put("pImage", uri);
-            hashMap.put("pId", timestamp);
+            hashMap.put("pId", pId);
             hashMap.put("pLikes", "0");
             hashMap.put("pComments", "0");
 
@@ -452,7 +451,7 @@ public class AddPostActivity extends AppCompatActivity  {
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
 
             //put data in this ref
-            ref.child(timestamp).setValue(hashMap)
+            ref.child(pId).setValue(hashMap)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -466,10 +465,10 @@ public class AddPostActivity extends AppCompatActivity  {
 
                             HashMap<Object,String> likesHash = new HashMap<>();
                             likesHash.put("pLikes","0");
-                            likesHash.put("pId",timestamp);
+                            likesHash.put("pId",pId);
 
                             DatabaseReference likesRef = FirebaseDatabase.getInstance().getReference("Likes");
-                            likesRef.child(timestamp).setValue(likesHash)
+                            likesRef.child(pId).setValue(likesHash)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

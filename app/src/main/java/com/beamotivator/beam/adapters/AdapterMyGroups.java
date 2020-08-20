@@ -48,6 +48,7 @@ public class AdapterMyGroups extends RecyclerView.Adapter<AdapterMyGroups.GroupH
         final String gTitle = model.getGroupTitle();
         String gDescription = model.getGroupDescription();
         String gImage = model.getGroupIcon();
+        final String groupId = model.getGroupId();
 
 
         holder.groupTitle.setText(gTitle);
@@ -59,7 +60,8 @@ public class AdapterMyGroups extends RecyclerView.Adapter<AdapterMyGroups.GroupH
                     .placeholder(R.drawable.ic_image_black)
                     .into(holder.groupImage);
         }
-        catch (Exception e){ holder.groupImage.setImageResource(R.drawable.ic_image_white_chat);
+        catch (Exception e){
+            holder.groupImage.setImageResource(R.drawable.ic_image_white_chat);
         }
 
         holder.openGroup.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +69,7 @@ public class AdapterMyGroups extends RecyclerView.Adapter<AdapterMyGroups.GroupH
             public void onClick(View v) {
                 Intent openIntent = new Intent(context, EachGroup.class);
                 openIntent.putExtra("groupTitle",gTitle);
+                openIntent.putExtra("groupId",groupId);
                 context.startActivity(openIntent);
             }
         });

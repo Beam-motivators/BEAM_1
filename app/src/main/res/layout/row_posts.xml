@@ -77,6 +77,16 @@
                 android:tint="@color/independance" />
         </LinearLayout>
 
+        <!--        <TextView-->
+        <!--            android:id="@+id/pTitleTv"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:padding="5dp"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:text="Title"-->
+        <!--            android:textColor="@color/colorBlack"-->
+        <!--            android:autoLink="all"/>-->
 
         <TextView
             android:id="@+id/pDescriptionTv"
@@ -174,6 +184,16 @@
                 android:paddingStart="30dp"
                 android:paddingEnd="5dp" />
 
+            <!--            <Button-->
+            <!--                android:id="@+id/shareBtn"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:text="SHARE"-->
+            <!--                android:background="#1F1B24"-->
+            <!--                android:drawablePadding="5dp"-->
+            <!--                android:textColor="@color/text_color"-->
+            <!--                android:drawableStart="@drawable/ic_share"/>-->
         </LinearLayout>
 
         <View
