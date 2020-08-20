@@ -1,6 +1,8 @@
 package com.beamotivator.beam.fragments;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -73,6 +77,15 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getActivity().getWindow();
+            Drawable background = getActivity().getResources().getDrawable(R.drawable.main_gradient);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getActivity().getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(getActivity().getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+
+        }
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
 
