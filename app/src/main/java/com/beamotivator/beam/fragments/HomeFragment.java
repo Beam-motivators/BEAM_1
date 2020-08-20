@@ -1,5 +1,6 @@
 package com.beamotivator.beam.fragments;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -31,13 +32,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beamotivator.beam.AboutActivity;
 import com.beamotivator.beam.Attendance;
 import com.beamotivator.beam.MainActivity;
-import com.beamotivator.beam.PrefManager;
 import com.beamotivator.beam.R;
 import com.beamotivator.beam.SavedPost;
 import com.beamotivator.beam.SuggestionsActivity;
@@ -92,15 +93,13 @@ public class HomeFragment extends Fragment {
 
     GoogleSignInClient mGoogleSignInClient;
 
-
-    CardView wokCard;
+     CardView wokCard;
 
     NavigationView homeNav;
-    private PrefManager prefManager;
 
     //To get resources text
     Resources resources;
-    ConstraintLayout constraintLayout;
+
     String myUid;
     public HomeFragment() {
         // Required empty public constructor
@@ -112,8 +111,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getActivity().getWindow();
             Drawable background = getActivity().getResources().getDrawable(R.drawable.main_gradient);
@@ -123,29 +120,17 @@ public class HomeFragment extends Fragment {
             window.setBackgroundDrawable(background);
 
         }
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
 
-          constraintLayout = view.findViewById(R.id.greet_layout);
+
+
+
+        ConstraintLayout constraintLayout = view.findViewById(R.id.greet_layout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(2000);
         animationDrawable.start();
-
-//        prefManager = new PrefManager(getActivity());
-//        if (!prefManager.isFirstTimeLaunch()) {
-//            launchHomeScreen();
-//          getActivity().finish();
-//        }
-//        else {
-//
-//            constraintLayout.setVisibility(View.GONE);
-//        }
-
-
-
-
-
-
         firebaseAuth = FirebaseAuth.getInstance();
         myUid = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
 
@@ -327,11 +312,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-//    private void launchHomeScreen() {
-//        prefManager.setFirstTimeLaunch(false);
-//        constraintLayout.setVisibility(View.VISIBLE);
-//
-//    }
 
 
 

@@ -4,11 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     tools:context=".GroupCreateActivity">
 
     <!-- Group icon-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/createTlbr"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:title="Create Group"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:background="@drawable/main_gradient"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_below="@id/createTlbr"
         android:id="@+id/groupIconIv"
         android:layout_width="100dp"
         android:layout_height="100dp"

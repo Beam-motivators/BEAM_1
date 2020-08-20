@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -35,12 +36,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GroupCreateActivity extends AppCompatActivity {
-
-    private ActionBar actionBar;
 
     private FirebaseAuth firebaseAuth;
 
@@ -72,11 +72,12 @@ public class GroupCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_create);
 
-        actionBar = getSupportActionBar();
-        actionBar.setTitle("Create Group");
+        Toolbar cgTlbr = findViewById(R.id.createTlbr);
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        setSupportActionBar(cgTlbr);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -370,9 +371,6 @@ public class GroupCreateActivity extends AppCompatActivity {
     private void checkUser() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if (user != null) {
-            actionBar.setSubtitle(user.getEmail());
-        }
     }
 
     @Override
