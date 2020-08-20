@@ -1,11 +1,14 @@
 package com.beamotivator.beam.fragments;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,9 +27,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +66,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -86,8 +93,7 @@ public class HomeFragment extends Fragment {
 
     GoogleSignInClient mGoogleSignInClient;
 
-
-    CardView wokCard;
+     CardView wokCard;
 
     NavigationView homeNav;
 
@@ -105,7 +111,21 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getActivity().getWindow();
+            Drawable background = getActivity().getResources().getDrawable(R.drawable.main_gradient);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getActivity().getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(getActivity().getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+
+        }
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
+
+
+
+
+
         ConstraintLayout constraintLayout = view.findViewById(R.id.greet_layout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
