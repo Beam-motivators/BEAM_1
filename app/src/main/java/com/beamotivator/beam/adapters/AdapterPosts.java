@@ -22,10 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beamotivator.beam.AboutActivity;
+import com.beamotivator.beam.Imagepopup.PhotoFullPopupWindow;
 import com.beamotivator.beam.PostDetailActivity;
 import com.beamotivator.beam.PostLikedByActivity;
 import com.beamotivator.beam.R;
@@ -243,6 +245,14 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
 
 
 
+
+        myHolder.pImageIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new PhotoFullPopupWindow(context, R.layout.popup_photo_full, myHolder.view1,pImage, null);
+
+            }
+        });
 
 
 
@@ -514,7 +524,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                     ModelUser modelUser = ds.getValue(ModelUser.class);
                     int tLikes = Integer.parseInt(modelUser.getTotalLikes());
                     ref.getRef().child(hisId).child("totalLikes").setValue(""+(tLikes-1));
-                    Toast.makeText(context, ""+tLikes, Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(context, ""+tLikes, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -872,7 +882,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
         ImageButton moreBtn;
         Button likeBtn, commentBtn, saveBtn, shareBtn;
         LinearLayout profileLayout;
-
+CardView view1;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -894,6 +904,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
             shareBtn = itemView.findViewById(R.id.readMoreButton);
             profileLayout = itemView.findViewById(R.id.profileLayout);
             stamp = itemView.findViewById(R.id.stamp);
+            view1 = itemView.findViewById(R.id.postsCard);
 
         }
     }

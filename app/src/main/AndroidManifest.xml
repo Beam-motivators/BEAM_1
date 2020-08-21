@@ -15,7 +15,9 @@
         android:roundIcon="@drawable/tea_cup"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-         <activity android:name=".AboutActivity" />
+        <activity android:name=".adapters.FullScreenImageViewActivity"></activity>
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".AboutActivity" />
         <activity android:name=".AddModifyTask" />
         <activity android:name=".AddPostActivity" />
         <activity android:name=".Attendance" />
@@ -33,7 +35,7 @@
         <activity android:name=".TodoMain" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".Splash"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

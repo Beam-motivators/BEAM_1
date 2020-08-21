@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,6 +22,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,6 +34,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
     private ValueAnimator valueAnimator;
     private  static final int RC_SIGN_IN = 100;
     private GoogleSignInClient mGoogleSignInClient;
-    private LinearLayout signIn;
+   // private LinearLayout signIn;
     private FirebaseAuth mAuth;
-
+    private ProgressBar progress_bar;
+    private FloatingActionButton signIn;
     private int check = 0;
-
+TextView appversion;
 
 
     @Override
@@ -64,35 +70,22 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
-            Drawable background = this.getResources().getDrawable(R.drawable.two);
+        //    Drawable background = this.getResources().getDrawable(R.drawable.main_gradient);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(this.getResources().getColor(android.R.color.transparent));
             window.setNavigationBarColor(this.getResources().getColor(android.R.color.transparent));
-            window.setBackgroundDrawable(background);
+           // window.setBackgroundDrawable(background);
 
         }
         setContentView(R.layout.activity_main);
-
-        imageView1 = findViewById(R.id.imageBg1);
-        imageView2 = findViewById(R.id.imageBg2);
-        valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setDuration(40000L);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                float progress = (float) valueAnimator.getAnimatedValue();
-                float width = imageView1.getWidth();
-                final float translationX = width * progress;
-                imageView1.setTranslationX(translationX);
-                imageView2.setTranslationX(translationX - width);
-            }
-        });
-        valueAnimator.start();
+        progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
+        appversion= findViewById(R.id.appversion);
+        String versionName = BuildConfig.VERSION_NAME;
+        appversion.setText("BEAM"+versionName);
         signIn = findViewById(R.id.SignIn);
-//        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
-//        signIn.startAnimation(animation);
+
+        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
+        signIn.startAnimation(animation);
         //Before mAuth
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -108,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                searchAction();
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
@@ -266,5 +260,18 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         valueAnimator.end();
 
+    }
+    private void searchAction() {
+        progress_bar.setVisibility(View.VISIBLE);
+        signIn.setAlpha(0f);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progress_bar.setVisibility(View.GONE);
+                signIn.setAlpha(1f);
+              //  Snackbar.make(parent_view, "Login data submitted", Snackbar.LENGTH_SHORT).show();
+            }
+        }, 1000);
     }
 }

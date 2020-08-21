@@ -11,4 +11,8 @@
         <item name="android:textColorPrimary">@color/colorWhite</item>
         <item name="android:background">@color/transparent</item>
     </style>
+    <style name="ProgressBar.White" parent="@style/AppTheme">
+        <item name="colorPrimary">@color/bluetheme</item>
+        <item name="colorAccent">@color/bluetheme</item>
+    </style>
 </resources>

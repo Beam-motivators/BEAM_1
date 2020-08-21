@@ -9,8 +9,8 @@
     <color name="text_color">#03DAC5</color>
     <color name="colorText">#F3F3F4</color>
     <color name="whitePassive">#ece9e6</color>
-    <color name="greentheme">#0eec50</color>
-    <color name="bluetheme">#33dee1</color>
+    <color name="greentheme">#00c6ff</color>
+    <color name="bluetheme">#0072ff</color>
     <color name="color_lightGray">#E8EBEC</color>
     <color name="gray">#253A4B</color>
     <color name="buttonxd">#253A4B</color>
@@ -23,6 +23,7 @@
     <color name="independance">#3A506B</color>
     <color name="transparent">#00000000</color>
     <color name="red">#F40606</color>
+    <color name="cyan_800_overlay">#E600838F</color>
 
     <color name="grey1">#e0e0e0</color>
 

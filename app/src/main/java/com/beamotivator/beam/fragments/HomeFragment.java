@@ -360,6 +360,7 @@ public class HomeFragment extends Fragment {
                     recyclerView.setVisibility(View.VISIBLE);
                     homeEmpty.setVisibility(View.GONE);
                     mShimmerViewContainer.stopShimmer();
+                    mShimmerViewContainer.setVisibility(View.INVISIBLE);
                  }
             }
 

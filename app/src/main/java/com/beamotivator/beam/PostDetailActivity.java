@@ -140,8 +140,8 @@ public class PostDetailActivity extends AppCompatActivity {
         cAvatarIv = findViewById(R.id.cAvatarIv);
 
 
-        Animation animation = AnimationUtils.loadAnimation(PostDetailActivity.this, R.anim.scale);
-        shareBtn.startAnimation(animation);
+//        Animation animation = AnimationUtils.loadAnimation(PostDetailActivity.this, R.anim.scale);
+//        shareBtn.startAnimation(animation);
         loadPostInfo();
 
         checkuserstatus();
@@ -473,11 +473,11 @@ public class PostDetailActivity extends AppCompatActivity {
                      * change the icon to another
                      * change text like to liked */
                     likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0, 0, 0);
-                    likeBtn.setText("Liked");
+                  //  likeBtn.setText("Liked");
                 } else {
                     //user not liked this post
                     likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like, 0, 0, 0);
-                    likeBtn.setText("Like");
+                  //  likeBtn.setText("Like");
                 }
             }
 
